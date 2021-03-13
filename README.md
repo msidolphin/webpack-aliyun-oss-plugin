@@ -27,7 +27,7 @@ module.exports = {
             region: 'your region',
             bucket: 'you bucket',
             /// 阿里云oss发布路径
-            /// 最终文件的访问地址为：https://[bucket].[region].aliyun.com/www/[file]
+            /// 最终文件的访问地址为：https://[bucket].[region].aliyuncs.com/www/[file]
             publicPath: '/www',
             /// 静态资源路径 默认/static
             assetsSubDirectory: '/static',
