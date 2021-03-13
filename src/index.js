@@ -53,6 +53,9 @@ class WebpackAliyunOssPlugin {
         this._initOss()
         .then(() => this._collectFiles())
         .then(files => this._uploadFiles(files))
+        .then(() => {
+            typeof cb === 'function' && cb()
+        })
         .catch(err => {
             if (compilaton && compilaton.errors) compilaton.errors.push(new Error(`Webpack Aliyun Oss Plugin: ${err.message}`))
             else throw new Error(`Webpack Aliyun Oss Plugin: ${err.message}`)
@@ -62,12 +65,12 @@ class WebpackAliyunOssPlugin {
 
 
     _initOss() {
-        const { accessKeyId, accessKeySecret, bucket, region, timeout = kDefaultTimeout} = this.options 
-        if (!accessKeyId) throw new Error('\'accessKeyId\' option is required.')
-        if (!accessKeySecret) throw new Error('\'accessKeySecret\' option is required.')
-        if (!bucket) throw new Error('\'bucket\' option is required.')
-        if (!region) throw new Error('\'region\' option is required.')
         try {
+            const { accessKeyId, accessKeySecret, bucket, region, timeout = kDefaultTimeout} = this.options 
+            if (!accessKeyId) throw new Error('\'accessKeyId\' option is required.')
+            if (!accessKeySecret) throw new Error('\'accessKeySecret\' option is required.')
+            if (!bucket) throw new Error('\'bucket\' option is required.')
+            if (!region) throw new Error('\'region\' option is required.')
             this.store = OSS({
                 accessKeyId,
                 accessKeySecret,
@@ -78,7 +81,7 @@ class WebpackAliyunOssPlugin {
             })
             return Promise.resolve(this.store)
         } catch(e) {
-            throw new Error(e.message)
+            return Promise.reject(e)
         } 
     }
 
@@ -141,7 +144,7 @@ class WebpackAliyunOssPlugin {
                 throw new Error(`upload ${file.src} failed：${err.message}`)
             }
         }
-        progress.succeed()
+        progress.succeed('all files have been uploaded successfully.')
         return Promise.resolve(true)
     }
 

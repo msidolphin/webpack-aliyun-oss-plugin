@@ -6,13 +6,13 @@ webpack上传阿里云oss插件，能够在文件输出到output.path之后自�
 ## 安装
 
 ```bash
-npm install webpack-aliyun-oss-plugin --save-dev
+npm install @msidolphin/webpack-aliyun-oss-plugin --save-dev
 ```
 
 ## 使用
 
 ```js
-const WebpackAliyunOssPlugin = require('webpack-ali-oss-plugin')
+const WebpackAliyunOssPlugin = require('@msidolphin/webpack-aliyun-oss-plugin')
 
 module.exports = {
     /// ...
