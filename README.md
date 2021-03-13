@@ -12,7 +12,7 @@ npm install webpack-aliyun-oss-plugin --save-dev
 ## 使用
 
 ```js
-const WebpackAliyunOssPlugin = require('webpack-aliyun-oss-plugin')
+const WebpackAliyunOssPlugin = require('webpack-ali-oss-plugin')
 
 module.exports = {
     /// ...
