@@ -25,9 +25,9 @@ module.exports = {
             /// 需要剔除的文件
             exclude: [/\.html$/],
             region: 'your region',
-            bucket: 'you bucket',
+            bucket: 'your bucket',
             /// 阿里云oss发布路径
-            /// 最终文件的访问地址为：https://[bucket].[region].aliyuncs.com/www/[file]
+            /// 最终文件的访问地址为：https://[bucket].[region].aliyuncs.com/[publicPath]/[file]
             publicPath: '/www',
             /// 静态资源路径 默认/static
             assetsSubDirectory: '/static',
