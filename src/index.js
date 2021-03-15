@@ -52,13 +52,12 @@ class WebpackAliyunOssPlugin {
     run(compilaton, cb) {
         this._initOss()
         .then(() => this._collectFiles())
-        .then(files => this._uploadFiles(files))
-        .then(() => {
-            typeof cb === 'function' && cb()
-        })
+        .then(files => this._uploadFiles(files)) 
         .catch(err => {
             if (compilaton && compilaton.errors) compilaton.errors.push(new Error(`Webpack Aliyun Oss Plugin: ${err.message}`))
             else throw new Error(`Webpack Aliyun Oss Plugin: ${err.message}`)
+        })
+        .finally(() => {
             typeof cb === 'function' && cb()
         })
     }
