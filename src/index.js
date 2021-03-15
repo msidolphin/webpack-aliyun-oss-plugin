@@ -96,7 +96,7 @@ class WebpackAliyunOssPlugin {
         if (!include) {
             return Promise.reject(new Error('\'include\' option is required.'))
         }
-        const targets = new Set()
+        const targets = []
         for (let i = 0; i < include.length; ++i) {
             let exp = include[i]
             let files = await globby(exp)
@@ -114,7 +114,7 @@ class WebpackAliyunOssPlugin {
                 if (matcher) {
                     let dest = matcher[0]
                     dest = path.join(publicPath, dest)
-                    targets.add(new FileDescriptor({
+                    targets.push(new FileDescriptor({
                         src: file,
                         dest,
                         size: fs.statSync(file).size
@@ -125,7 +125,7 @@ class WebpackAliyunOssPlugin {
         targets.forEach(target => {
             console.log(`${target.src} => https://${bucket}.${region}.aliyuncs.com${target.dest}`)
         })
-        return Promise.resolve(Array.from(targets))
+        return Promise.resolve(targets)
     }
 
     async _uploadFiles(files) {
