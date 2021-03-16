@@ -1,6 +1,6 @@
 {
   "name": "@msidolphin/webpack-aliyun-oss-plugin",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "webpack阿里云oss上传插件",
   "main": "src/index.js",
   "scripts": {
@@ -25,6 +25,7 @@
   "dependencies": {
     "ali-oss": "^6.13.2",
     "globby": "^11.0.2",
-    "ora": "^5.3.0"
+    "ora": "^5.3.0",
+    "slash": "^3.0.0"
   }
 }

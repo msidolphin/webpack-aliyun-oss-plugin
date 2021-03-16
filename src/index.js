@@ -5,6 +5,7 @@ const globby = require("globby")
 const ora = require('ora')
 const { toArray, ofType, formatSize } = require('./utils')
 const FileDescriptor = require('./file-descriptor')
+const slash = require('slash')
 
 const kPluginName = 'WebpacAliyunOsskPlugin'
 
@@ -112,7 +113,7 @@ class WebpackAliyunOssPlugin {
                 let matcher = file.match(new RegExp(assetsSubDirectory))
                 if (matcher) {
                     let dest = matcher[0]
-                    dest = path.join(publicPath, dest)
+                    dest = slash(path.join(publicPath, dest))
                     targets.push(new FileDescriptor({
                         src: file,
                         dest,
